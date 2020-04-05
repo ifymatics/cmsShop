@@ -1,0 +1,45 @@
+<%- include('_layouts/header')  -%>
+
+<div class="row products">
+
+    <div class="col-md-12">
+        <h1 class=" pagewide"><%= product.title %> </h1>
+    </div>
+
+    <div class="col-md-12 col-xs-12 hr"></div>
+    <div class="col-md-5 col-xs-12 text-center ">
+
+        <div>
+            <img class="imageDetails" src="/product_images/<%= product._id %>/<%= product.image %>" alt="">
+        </div>
+
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <p>
+            <h6>Description: </h6><%= product.desc %>
+        </p>
+        <p>
+            <h6>Price: </h6>N <%= product.price %>
+        </p>
+        <p><a class=" btn btn-warning " href="/cart/add/<%= product.slug %>">Add to Cart</a> </p>
+    </div>
+    <div class="col-xs-12">
+        <ul class="gallery">
+            <% if (imageGallery) { %>
+            <% imageGallery.forEach(image => { %>
+            <% if (image !='thumbs') { %>
+
+            <li>
+                <a data-fancybox="gallery" href="/product_images/<%= product._id %>/gallery/<%= image %>">
+                    <img src="/product_images/<%= product._id %>/gallery/thumbs/<%= image %>">
+                </a>
+            </li>
+            <% } %>
+
+            <% }) %>
+            <% } %>
+        </ul>
+    </div>
+
+</div>
+<%- include('_layouts/footer') -%>

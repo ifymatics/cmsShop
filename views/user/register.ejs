@@ -1,0 +1,31 @@
+<%- include('../_layouts/header')  -%>
+
+<h1><%= title %> </h1>
+
+<form method="post" action="/users/register">
+    <div class="form-group">
+        <label for="full_name"><b>Full Name</b></label>
+        <input type="text" name="full_name" class="form-control" id="">
+    </div>
+    <div class="form-group">
+        <label for="email"><b>Email address</b></label>
+        <input type="email" name="email" class="form-control" id="" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted"><b>We'll never share your email with anyone else.</b></small>
+    </div>
+    <div class="form-group">
+        <label for="username"><b>Phone Number</b></label>
+        <input type="text" name="username" class="form-control" id="">
+    </div>
+    <div class="form-group">
+        <label for="password"><b>Password</b></label>
+        <input type="password" name="password" class="form-control" id="">
+    </div>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button type="submit" class="btn btn-primary"><b>Submit</b></button>
+
+</form>
+
+<div style="margin-top: 0px; margin-left: 30vw;">
+    <a href="/users/login"><b>Already registered? Login</b></a>
+</div>
+<%- include('../_layouts/footer') -%>

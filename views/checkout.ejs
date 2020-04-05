@@ -1,0 +1,70 @@
+<%- include('_layouts/header')  -%>
+<h3>My Cart</h3>
+<br>
+<% if (cart !==undefined) { %>
+
+<table class="table table-striped table-responsive aligncenter">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+            <th>Subtotal</th>
+        </tr>
+
+    </thead>
+
+    <!-- <tbody> -->
+    <% let total=0; %>
+    <% let subTotal=0; %>
+    <% let productArray=[]; %>
+    <% let prod=[]; %>
+    <% cart.forEach(c => { %>
+
+    <% subTotal = +parseFloat(c.qty*c.price).toFixed(2); %>
+    <%  total +=  subTotal; %>
+    <% productArray.push({product:c}); %>
+    <tr>
+
+        <td><img class="checkoutImg" src="<%= c.image %>" alt=""></td>
+        <td><%= c.title %> </td>
+        <td>N <%= c.price %> </td>
+        <td><%= c.qty %> </td>
+        <td>
+            <a href="/cart/update/<%= c.title %>?action=add">+</a>&nbsp;&nbsp;
+            <a href="/cart/update/<%= c.title %>?action=remove">-</a>&nbsp;&nbsp;
+            <a href="/cart/update/<%= c.title %>?action=clear">clear</a>
+        </td>
+        <td>N <%= subTotal %> </td>
+
+    </tr>
+
+    <% }) %>
+    <tr>
+        <td colspan="6" align="right"><b>Total: N <%= total%> </b></td>
+    </tr>
+    <tr>
+        <td colspan="5" align="right">
+            <a id="clearCart" class="btn btn-danger" href="/cart/clear">Clear cart</a>
+        </td>
+
+        <td colspan="5" align="right">
+            <form action="/paystack/pay" method="post">
+                <input type="hidden" name="full_name" value="okorie Ifeanyi">
+                <input type="hidden" name="amount" value="<%= total%>">
+                <input type="hidden" name="items" value="<%= JSON.stringify(cart)%>">
+                <input type="hidden" name="email" value="ifymatics2004@gmail.com">
+                <button class="btn btn-warning" type="submit">Pay Now</button>
+
+            </form>
+
+        </td>
+    </tr>
+    <!-- </tbody> -->
+</table>
+<% }else{ %>
+<h3 class="text-center">Your cart is empty</h3>
+<% } %>
+<%- include('_layouts/footer') -%>

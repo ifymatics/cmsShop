@@ -1,0 +1,108 @@
+img.pimage{
+    width:150px;
+}
+a.pa{
+    display:inline-block;
+    width:160px;
+}
+.row.products .p{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.row.products .p:hover{
+ 
+    border-style: solid;
+    border-color: #e6e1e1;
+    
+}
+/* button.link {
+    display: none;
+   
+}
+
+.row.products .p:hover  .link{
+    display: inline-block;
+     margin-bottom: 10px; 
+     margin-top: 10px; 
+} */
+/* #mobile{
+    display:inline-block;
+} */
+.hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  @media screen and (min-width: 0px) and (max-width: 690px) {
+    #mobile { display: block; } 
+    /* div#desktop { display: none; } */
+    div.desktop { display: none; }
+    #dropdownMenuButton { display: block; } 
+    .row.products .p{
+ 
+        border-style: solid;
+        border-color: #e6e1e1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin: 4px;
+    }
+    .link{margin-top:10px;}
+    .mobile{display:block;}
+    .second{
+    width:60vw;
+    padding-left: 4vw;;
+    margin-bottom: 15px;
+    }
+    #desktopSearch{
+        display:none;
+    }
+   .desktop{
+       display:none;
+   }
+  }
+
+
+  #desktopSearch{
+   margin-bottom: 10px;
+}
+  
+  @media screen and (min-width: 691px) and (max-width: 1024px) {
+    div#mobile { display: none; }  
+    div#mobile2 { display: none; }  
+    #desktop { display: block; }
+    div#dropdownMenuButton { display: none; } 
+  div.second{ display: none;}
+    a.link {
+        display: none;
+       
+    }
+    .mobile{display:none;}
+    
+    .row.products .p:hover  .link{
+        display: inline-block;
+         margin-bottom: 10px; 
+         margin-top: 10px; 
+    }
+  }
+
+
+  img.imageDetails{
+      width: 100%;
+  }
+  ul.gallery li{
+      display:inline-block;
+      margin: 20px;
+      list-style: none;
+  }
+  img.checkoutImg{
+      width:100px;
+  }
+ table.aligncenter td{
+     vertical-align: middle !important;
+ }
+ .alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+ }

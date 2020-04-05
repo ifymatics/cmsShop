@@ -1,0 +1,28 @@
+<%- include('_layouts/header')  -%>
+
+<div class="row products">
+    <div class="col-md-12" id="desktopSearch">
+        <input type="search" class="form-control ds-input" id="search-input" placeholder="Search..."
+            aria-label="Search for..." autocomplete="off" data-docs-version="4.1" spellcheck="false" role="combobox"
+            aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
+            style="position: relative; vertical-align: top;">
+    </div>
+
+    <% if (products ) { %>
+
+    <% for( let index = 0; index < products.length; index++ ) { %>
+    <div class="col-md-4 col-xs-12 text-center p">
+        <a class="pa" href="/products/<%= products[index].category %>/<%= products[index].slug %>">
+            <img class="pimage" src="/product_images/<%= products[index]._id %>/<%= products[index].image %>" alt="">
+        </a>
+        <h5><%= products[index].title %> </h5>
+        <h4>N <%= parseFloat(products[index].price).toFixed(2) %> </h4>
+        <a class="vd" href="/products/<%= products[index].category %>/<%= products[index].slug %>">view Details</a>
+        <br>
+        <a href="/cart/add/<%= products[index].slug %>" class=" btn btn-warning link">Add to Cart</a>
+    </div>
+    <% } %>
+    <% } %>
+
+</div>
+<%- include('_layouts/footer') -%>

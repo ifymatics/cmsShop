@@ -1,0 +1,55 @@
+<%- include('../_layouts/adminHeader')  %>
+<div class="row">
+    <h2 class="col-md-10">All pages</h2>
+
+    <div style="float: left;"><a href="/admin/pages/add-page" class="btn btn-outline-primary ">Add a new page</a> </div>
+</div>
+<br><br><br>
+
+<table class="table table-striped sorting">
+    <thead>
+        <tr class="home">
+            <th>Title</th>
+            <th>Edit</th>
+            <th>Delete
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (pages) { %>
+        <% pages.forEach(page => { %>
+
+
+        <tr id="id_<%= page._id %>" class="<%= page.slug %>">
+            <td><%= page.title %> </td>
+            <td><a href="/admin/pages/edit-page/<%= page._id %>">Edit</a></td>
+
+            <% if (page.slug==='home') { %>
+            <td></td>
+
+
+            <% } else { %>
+
+            <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page._id %>">Delete</a></td>
+            <% } %>
+        </tr>
+        <% }) %>
+
+        <% } %>
+    </tbody>
+</table>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $('tbody').sortable({
+        items: "tr:not('.home')",
+        placeholder: "ui-state-highlight",
+        update: () => {
+            var ids = $('tbody').sortable("serialize");
+            var url = "/admin/pages/re-arrange-pages";
+            $.post(url, ids);
+        }
+
+    });
+</script>
+<%- include('../_layouts/adminfooter') %>
