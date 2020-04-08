@@ -1,0 +1,68 @@
+<%- include('../_layouts/header')  -%>
+<h3><%= title %> </h3>
+<br>
+<div class="alert alert-danger d-none" id="charge-error"></div>
+<% if (orders) { %>
+<div class="row">
+    <table class="table table-striped table-responsive aligncenter">
+        <thead>
+            <tr>
+                <!-- <th>Image</th>
+          
+            <th>Amount</th>
+            <th>Transaction status</th>
+            <th></th>
+            -->
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <% orders.forEach(order => { %>
+
+            <tr>
+            <tr>
+
+                <td class="">
+                    <div class="col-md-12" style="background-color: white;">
+                        <% order.products.forEach(product => { %>
+                        <img class="checkoutImg" src="<%= product.item.image %> " alt="">
+
+                        <% }) %>
+                        <span style="margin-left:1vw;font-size: 0.9em;">
+                            <% let date = order.date.split(' ') %>
+                            Placed on: <%= `${date[0]} ${date[1]} ${date[2]} ${date[3]} ${date[4]}` %>
+                        </span>
+                        <span style="margin-left:9vw;font-size: 1.7em;">
+                            <a href=""> Details</a>
+                        </span>
+                        <span>
+
+                            <p style="margin-top: 1vh;"><i><b><%=  order.order_status %></b></i></p>
+                            <p><b>Amount</b>: N <%= order.amount %></p>
+                            <span> <b> Transaction status</b>: <%= order.trxStatus %> </span>
+                        </span>
+                    </div>
+                </td>
+
+            </tr>
+
+            <!-- <td> </td> -->
+
+
+            </tr>
+
+            <% }) %>
+
+
+        </tbody>
+    </table>
+</div>
+<% }else{ %>
+<h3 class=" text-center">Your order is empty</h3>
+<% } %>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<!-- <script src="/js/checkout.js"></script> -->
+<%- include('../_layouts/footer') -%>

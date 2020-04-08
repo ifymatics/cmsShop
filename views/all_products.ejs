@@ -9,7 +9,7 @@
     </div>
 
     <% if (products ) { %>
-
+    <!-- <div class="col-md-4 col-xs-12"> -->
     <% for( let index = 0; index < products.length; index++ ) { %>
     <div class="col-md-4 col-xs-12 text-center p">
         <a class="pa" href="/products/<%= products[index].category %>/<%= products[index].slug %>">
@@ -22,6 +22,7 @@
         <a href="/cart/add/<%= products[index].slug %>" class=" btn btn-warning link">Add to Cart</a>
     </div>
     <% } %>
+    <!-- </div> -->
     <% } %>
 
 </div>

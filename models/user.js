@@ -17,6 +17,10 @@ const userSchema = new UserSchema({
         type: String,
         required: true
     },
+    address: {
+        type: String,
+        required: true
+    },
     admin: {
         type: Number,
     },

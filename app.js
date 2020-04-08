@@ -71,7 +71,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    cookie: { maxAge: 14 * 24 * 60 * 60 }
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }))
 
 
@@ -94,7 +94,8 @@ app.use(passport.session());
 
 //setting cart session
 app.get('*', (req, res, next) => {
-    res.locals.cart = req.session.cart;
+    res.locals.login = req.isAuthenticated();
+    res.locals.session = req.session;
     res.locals.user = req.user || null;
     res.locals.rout = req.session.rout;
     next();
@@ -104,6 +105,7 @@ app.get('*', (req, res, next) => {
 const pages = require('./routes/pages');
 const products = require('./routes/products');
 const cart = require('./routes/cart');
+const order = require('./routes/order');
 const users = require('./routes/users');
 const paystack = require('./routes/paystack');
 const admin_pages = require('./routes/admin_pages');
@@ -119,6 +121,7 @@ app.use('/admin/categories', admin_categories);
 app.use('/admin/products', admin_products);
 app.use('/products', products);
 app.use('/cart', cart);
+app.use('/order', order);
 app.use('/users', users);
 app.use('/paystack', paystack);
 app.use('/', pages);
@@ -174,6 +177,7 @@ const server = http.createServer(app);
 server.on("error", onError);
 server.on("listening", onListening);
 server.listen(port, '192.168.43.191')
+//server.listen(port)
 
 
 module.exports = app;

@@ -11,8 +11,18 @@ route.use(csrfProtection);
 
 //GET regitser page
 route.get('/register', (req, res, next) => {
-    let title = 'Register';
-    res.render('user/register', { title: title, isActive: 'register', csrfToken: req.csrfToken() });
+    let full_name = '';
+    let username = '';
+    let email = '';
+
+    let address = '';
+    let title = "Register";
+    let isActive = "register";
+
+    res.render('user/register', {
+        title: title, full_name: full_name, username: username, email: email, address: address,
+        isActive: 'register', csrfToken: req.csrfToken()
+    });
 });
 
 //POST register page
@@ -20,6 +30,7 @@ route.post('/register', [
     check('full_name', 'full name must not be empty').not().isEmpty(),
     check('username', 'phone umber must not be empty and must be a valid number').not().isEmpty().isDecimal(),
     check('password', 'password must not be empty').not().isEmpty(),
+    check('address', 'address must not be empty').not().isEmpty(),
     check('email', 'email must not be empty').not().isEmpty().isEmail(),
 ],
     (req, res, next) => {
@@ -28,13 +39,21 @@ route.post('/register', [
         let username = req.body.username;
         let email = req.body.email;
         let password = req.body.password;
+        let address = req.body.address;
         let title = "Register";
-        isActive = "register";
+        let isActive = "register";
         let errors = validationResult(req);
 
         if (!errors.isEmpty()) {
 
-            res.render('user/register', { title: title, isActive: isActive, errors: errors.array(), full_name: full_name, username: username, email: email, user: null, csrfToken: req.csrfToken() });
+            res.render('user/register',
+                {
+                    title: title,
+                    session: null,
+                    isActive: isActive,
+                    errors: errors.array(), address: address,
+                    full_name: full_name, username: username, email: email, user: null, csrfToken: req.csrfToken()
+                });
         } else {
             User.findOne({ username: username } && { email: email }).then(user => {
                 if (user) {
@@ -45,6 +64,7 @@ route.post('/register', [
                         full_name: full_name,
                         username: username,
                         email: email,
+                        address: address,
                         password: password,
                         admin: 0
 

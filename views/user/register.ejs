@@ -1,31 +1,39 @@
 <%- include('../_layouts/header')  -%>
+<div class="col-md-8 col-md-offset-2" style="background-color:white;margin-top: 2.8em;">
+    <h1><%= title %> </h1>
 
-<h1><%= title %> </h1>
+    <form method="post" action="/users/register">
+        <div class="form-group">
+            <label for="full_name"><b>Full Name</b></label>
+            <input type="text" value="<%= full_name %> " name="full_name" class="form-control" id="">
+        </div>
+        <div class="form-group">
+            <label for="email"><b>Email address</b></label>
+            <input type="email" name="email" value="<% email %> " class="form-control" id=""
+                aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted"><b>We'll never share your email with anyone
+                    else.</b></small>
+        </div>
+        <div class="form-group">
+            <label for="password"><b>Password</b></label>
+            <input type="password" name="password" class="form-control" id="">
+        </div>
+        <div class="form-group">
+            <label for="username"><b>Phone Number</b></label>
+            <input type="text" value="<%= username %> " name="username" class="form-control" id="">
+        </div>
 
-<form method="post" action="/users/register">
-    <div class="form-group">
-        <label for="full_name"><b>Full Name</b></label>
-        <input type="text" name="full_name" class="form-control" id="">
-    </div>
-    <div class="form-group">
-        <label for="email"><b>Email address</b></label>
-        <input type="email" name="email" class="form-control" id="" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted"><b>We'll never share your email with anyone else.</b></small>
-    </div>
-    <div class="form-group">
-        <label for="username"><b>Phone Number</b></label>
-        <input type="text" name="username" class="form-control" id="">
-    </div>
-    <div class="form-group">
-        <label for="password"><b>Password</b></label>
-        <input type="password" name="password" class="form-control" id="">
-    </div>
-    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-    <button type="submit" class="btn btn-primary"><b>Submit</b></button>
+        <div class="form-group">
+            <label for="address"><b>Address</b></label>
+            <input type="text" value="<%= address %> " name="address" class="form-control" id="">
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" class="btn btn-primary btn-sm"><b>Submit</b></button>
 
-</form>
+    </form>
 
-<div style="margin-top: 0px; margin-left: 30vw;">
-    <a href="/users/login"><b>Already registered? Login</b></a>
+    <div style="margin-top: -6px;padding-bottom:10px;margin-left: 20vw;">
+        <a href="/users/login"><b>Already registered? Login</b></a>
+    </div>
 </div>
 <%- include('../_layouts/footer') -%>

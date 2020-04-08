@@ -18,7 +18,7 @@ const paystack = (request) => {
         const callback = (error, response, body) => {
             return mycallback(error, body);
         }
-        console.log(form)
+        //console.log(form)
         request.post(option, callback);
     }
 
@@ -38,6 +38,6 @@ const paystack = (request) => {
         }
         request(option, callback);
     }
-    return { initializePayment, verifyPayment };
+    return { initializePayment, verifyPayment, MySecretKey };
 }
 module.exports = paystack

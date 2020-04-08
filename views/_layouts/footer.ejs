@@ -6,7 +6,8 @@
 <p class="text-center">&COPY; softHub</p>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script> -->
+<script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
@@ -15,79 +16,12 @@
 <script>
 
     $('a#clearCart').on('click', () => {
+
         if (!confirm("Confirm clear Cart?"))
             return false
     })
-    // function payWithPaystack(total) {
-    //     var handler = PaystackPop.setup({
-    //         key: 'pk_test_270e09ca37c6ddffa61d8d7be0394b80584d4639',
-    //         email: 'ifymatics2004@gmail.com',
-    //         amount: total * 100,
-    //         currency: "NGN",
-    //         ref: '' + Math.floor((Math.random() * 1000000000) + 1), 
-    //         metadata: {
-    //             custom_fields: [
-    //                 {
-    //                     display_name: "product",
-    //                     variable_name: "product_value",
-    //                     value: ''
-    //                 }
-    //             ]
-    //         },
-    //         callback: function (response) {
-    //             // console.log(response)
-    //             if (response.status === 'success') {
-    //                 console.log('success')
-    //                 var parameters = { data: response.status };
-    //                 $.get('/process', parameters, function (data) {
-    //                     // $('#results').html(data);
-    //                     console.log(data)
-    //                 });
-    //             }
 
 
-    //             //alert('success. transaction ref is ' + response.reference);
-    //         },
-    //         onClose: function () {
-    //             alert('window closed');
-    //         }
-    //     });
-    //     handler.openIframe();
-    // }
-
-    const API_publicKey = "FLWPUBK_TEST-7484736a35ed098c28a565e7be837f77-X";
-
-    function payWithRave(total) {
-        var x = getpaidSetup({
-            PBFPubKey: API_publicKey,
-            customer_email: "ifymatics2004@gmail.com",
-            amount: total,
-            customer_phone: "234099940409",
-            currency: "NGN",
-            txref: "rave-123456",
-            hosted_payment: 1,
-            redirect_url: "http://192.168.43.191:3000/cart/process",
-            meta: [{
-                metaname: "flightID",
-                metavalue: "AP1234"
-            }],
-            onclose: function () { },
-            callback: function (response) {
-                var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
-                console.log("This is the response returned after a charge", response);
-                if (
-                    response.tx.chargeResponseCode == "00" ||
-                    response.tx.chargeResponseCode == "0"
-                ) {
-                    // redirect to a success page
-                } else {
-                    // redirect to a failure page.
-                }
-
-                x.close(); // use this to close the modal immediately after payment.
-            }
-        });
-    }
 
     $(function () {
         $('#search').on('keyup', function (e) {
